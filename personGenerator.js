@@ -83,17 +83,25 @@ const personGenerator = {
         }
     },
 
+    randomPatron: function (gender) {
+        if (gender === 'Мужчина') {
+            return `${this.randomValue(this.firstNameMaleJson)}ович`;
+        } else {
+            return `${this.randomValue(this.firstNameMaleJson)}oвна`;
+        }
+    },
+
     randomBirthDate: function () {
         let date = this.randomIntNumber(1999, 1950);
         return date;
-        
-    },
+        },
 
     getPerson: function () {
         this.person = {};
         this.person.gender = this.randomGender();
         this.person.firstName = this.randomFirstName(this.person.gender);
         this.person.surname = this.randomSurname(this.person.gender);
+        this.person.patron = this.randomPatron(this.person.gender);
         this.person.birthDate = this.randomBirthDate();
         return this.person;
     }
