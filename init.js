@@ -1,12 +1,22 @@
+document.querySelector("#generate").addEventListener("click", generatePerson);
 
-window.onload = function()
-{
-    const initPerson = personGenerator.getPerson();
-    document.getElementById('firstNameOutput').innerText = initPerson.firstName;
-    document.getElementById('surnameOutput').innerText = initPerson.surname;
-    document.getElementById('genderOutput').innerText = initPerson.gender;
-    document.getElementById('birthYearOutput').innerText = initPerson.birthDate;
-    document.getElementById('patronOutput').innerText = initPerson.patron;
-};
+function generatePerson() {
+  personGenerator.getPerson();
+  document.querySelector("#genderOutput").innerHTML = personGenerator.person.gender;
+  document.querySelector("#firstNameOutput").innerHTML = personGenerator.person.firstName;
+  document.querySelector("#surnameOutput").innerHTML = personGenerator.person.surname;
+  document.querySelector("#patronymicOutput").innerHTML = personGenerator.person.patronymic;
+  document.querySelector("#birthDateOutput").innerHTML = personGenerator.person.birthDate;
+  document.querySelector("#profOutput").innerHTML = personGenerator.person.prof;
+  document.querySelector("#reset").addEventListener("click", resetPerson);
+}
 
-
+function resetPerson() {
+  generatePerson.person = {};
+  document.querySelector("#genderOutput").innerHTML = '';
+  document.querySelector("#firstNameOutput").innerHTML = '';
+  document.querySelector("#surnameOutput").innerHTML = '';
+  document.querySelector("#patronymicOutput").innerHTML = '';
+  document.querySelector("#birthDateOutput").innerHTML = '';
+  document.querySelector("#profOutput").innerHTML = '';
+}
