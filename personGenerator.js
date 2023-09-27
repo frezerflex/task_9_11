@@ -23,16 +23,16 @@ const personGenerator = {
     firstNameMaleJson: `{
           "count": 10,
           "list": {     
-              "id_1": "Александр",
-              "id_2": "Максим",
-              "id_3": "Иван",
-              "id_4": "Артем",
-              "id_5": "Владимир",
-              "id_6": "Петр",
-              "id_7": "Михаил",
-              "id_8": "Даниил",
-              "id_9": "Егор",
-              "id_10": "Олег"
+            "id_1": "Александр",
+            "id_2": "Максим",
+            "id_3": "Иван",
+            "id_4": "Андрей",
+            "id_5": "Владимир",
+            "id_6": "Петр",
+            "id_7": "Михаил",
+            "id_8": "Даниил",
+            "id_9": "Егор",
+            "id_10": "Олег"
           }
       }`,
     firstNameFemaleJson: `{
@@ -132,12 +132,25 @@ const personGenerator = {
     },
   
     randomPatronymic: function (gender) {
+      let rname = this.randomValue(this.firstNameMaleJson)
       if (gender === "мужчина") {
-        return this.randomValue(this.firstNameMaleJson) + "ович";
-      } else {
-        return this.randomValue(this.firstNameMaleJson) + "овна";
-      }
-    },
+        if (rname === "Андрей") {
+          return rname.replace("ей", "еевич");
+          } else if (rname === "Михаил") {
+           return rname.replace("аил", "айлович");
+          } else {
+            return rname + "ович";
+          }
+       } else {
+        if (rname === "Андрей") {
+          return rname.replace("ей", "еевна");
+          } else if (rname === "Михаил") {
+           return rname.replace("аил", "айловна");
+          } else {
+            return rname + "овна";
+          }
+      } 
+    }, 
   
     randomBirthDate: function () {
       let year = function () {
